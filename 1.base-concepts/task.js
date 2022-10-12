@@ -4,7 +4,7 @@ function solveEquation(a, b, c) {
   let arr = [];
 
   // код для задачи №1 писать здесь
-   let d = b * b - 4 * a * c;
+  let d = b * b - 4 * a * c;
   console.log(d);
 
   if(a == 0) {
