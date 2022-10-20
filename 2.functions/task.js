@@ -6,12 +6,60 @@ function getArrayParams(arr) {
   let max = 0;
   let sum = 0;
 
-  // Cумму всех элементов
   for (let i = 0; i < arr.length; i++) {
+    // Сумма
     sum += arr[i];
+
+    // Максимальное
+    if(arr[i] > max) {
+      max = arr[i];
+    }
+    // Минимальное 
+    if(arr[i] < min) {
+      min = arr[i];
+    }
   }
 
-  // Максимальное и Минимальное значение
+  // Среднее
+  let avg = Number((sum / arr.length).toFixed(2));
+
+  return { min: min, max: max, avg: avg };
+}
+
+getArrayParams([-99, 99, 10])
+
+// Задание 2
+function worker(arr) {
+  let sum = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i]; 
+  }
+
+  return sum;
+}
+
+function makeWork(arrOfArr, worker, worker2) {
+  let max = 0;
+
+  for (let i = 0; i < arrOfArr.length; i++) {
+    let sum = worker(arrOfArr[i]);
+
+    if (max < sum) { 
+      max = sum;
+    }
+  }
+
+  return max;
+}
+
+// console.log(makeWork([[10,10,20],[20,19,10]],worker));
+
+// Задание 3
+function worker2(arr) {
+  let min = arr[0];
+  let max = 0;
+
   for (let i = 0; i < arr.length; i++) {
     if(arr[i] > max) {
       max = arr[i];
@@ -19,35 +67,11 @@ function getArrayParams(arr) {
     if(arr[i] < min) {
       min = arr[i];
     }
+
+    let difference = Math.abs(max - min);
+    
+    return difference;
   }
-
-  // Среднее арифметическое значение
-  let count = ((sum / arr.length).toFixed(2));
-  let avg = Number(count);
-
-  return { min: min, max: max, avg: avg };
 }
 
-getArrayParams([5])
-
-// Задание 2
-const f = sum => {
-  return sum.map(nums => nums.reduce((acc, v) => acc + v, 0));
-}
-  
-const sum = [[5, 5, 11], [10, 10, 17], [10, 5]];
-console.log(f(sum));
-
-function makeWork(arrOfArr, func) { // Мясорубка
-  let max = 0;
-
-  // Ваш кода
-  // for ...
-  
-  return max;
-}
-
-// Задание 3
-function worker2(arr) {
-  // Ваш код
-}
+// console.log(worker2([-10, -20, -40])); // -40 - (-10) = -30 => 30
