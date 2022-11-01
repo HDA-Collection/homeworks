@@ -40,6 +40,7 @@ function worker(arr) {
   return sum;
 }
 
+// // f Принимает, перебирает и передаёт([массив], func - worker и worker2)
 function makeWork(arrOfArr, func) {
   let max = 0;
 
