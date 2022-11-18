@@ -1,45 +1,34 @@
+"use strict"
+
 function Student(name, gender, age) {
   this.name = name;
   this.gender = gender;
   this.age = age;
 }
 
-let student1 = new Student(`Владислав`, `Мужчина`, 22);
-
-// Предмет
+// + Предмет
 Student.prototype.setSubject = function (subjectName) {
   this.subject = subjectName;
 }
 
-student1.setSubject(`Алгебра`);
-
-
-// 1 оценка + по одной далее
+// + Первая оценка + По одной далее
 Student.prototype.addMark = function(mark) {
-  if (this.marks === undefined) {
-    this.marks = [mark];   // + 1 Оценка
-  } else {
-    this.marks.push(mark); // + Следущая оценка
-  }
+  (this.marks === undefined) ? this.marks = [mark] : this.marks.push(mark);
 }
 
-// Несколько оценок
+// + Несколько оценок + Если нет оценок ->> В разработке
 Student.prototype.addMarks = function(...mark) {
-  this.marks.push(...mark);
+  (this.marks === undefined) ? this.marks.push(...mark) : this.marks = `Оценок нет`;
 }
 
-student1.addMark(1);
-student1.addMark(2);
-student1.addMarks(3, 4, 5);
-
-  Student.prototype.getAverage = function() {
-    // (П.2) Метод getAverage(), который при вызове будет возвращать среднее арифметическое оценок студента.
+// Вычисление среднего арифметического
+Student.prototype.getAverage = function() {  
+  return this.marks.reduce((a, b) => (a + b)) / this.marks.length;
 }
 
-// console.log(student1.getAverage()); // Среднее арифметическое
-
-// 3 (П.2)
-  // Метод exclude(reason), который при вызове будет исключать студента и устанавливать причину исключения. Для этого надо: 
-  // Удалить subject и marks  
-  // Добавить свойство excluded: reason.
-//
+// Отчислить
+Student.prototype.exclude = function(reason) {  
+  delete this.subject
+  delete this.marks
+  this.excluded = reason;
+}
