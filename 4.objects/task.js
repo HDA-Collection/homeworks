@@ -16,9 +16,9 @@ Student.prototype.addMark = function(mark) {
   (this.marks === undefined) ? this.marks = [mark] : this.marks.push(mark);
 }
 
-// + Несколько оценок + Если нет оценок ->> В разработке
+// + Несколько оценок
 Student.prototype.addMarks = function(...mark) {
-  (this.marks === undefined) ? this.marks.push(...mark) : this.marks = `Оценок нет`;
+  (this.marks === undefined) ? this.marks = mark : this.marks.push(...mark);
 }
 
 // Вычисление среднего арифметического
